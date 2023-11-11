@@ -1,25 +1,34 @@
-import logo from './logo.svg';
-import './App.css';
+import { Container } from "react-bootstrap";
+import "./index.css";
+import { person } from "./data";
+import Header from "./components/header.jsx";
+import Content from "./components/contant.jsx";
+import Footer from './components/footer';
+import { useState,useEffect } from "react";
+
+
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+ const [personData ,setPersonData]=  useState(person);
+ const onDelete=()=>{
+   setPersonData([])
+ }
+ const onView=()=>{
+  setPersonData(person)
+} 
+useEffect(()=>{
+  setPersonData([])
+
+},[])
+  return  (
+    <div className="font color-body">
+      <Container className="container full-screen py-5">
+        <Header person={personData} />
+        <Content person={personData} />
+        <Footer deleteAll={onDelete}  onView={onView}/> 
+      </Container>
     </div>
-  );
+  ) 
 }
 
 export default App;
